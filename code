@@ -7,10 +7,10 @@ g(i,x,t,o){         //function g returns waveheight, given time increment, note 
 main(i,n,s){	//main function (starts running here)
  for(i=0;;i++) {	//for loop and something
    putchar(	//call g 4 times and sums them up
-      g(i,	1,	n=i>>14, 	12) //first note        
-    +g(i,	s=i>>17,	n^i>>13, 	10) //2nd 
-    +g(i,	s/3,	n+((i>>11)%3),	10) //3rd
-    +g(i,	s/5,	8+n-((i>>10)%3),	9)  //4th
+     g(i, 1,       n=i>>14,        12) //first note        
+    +g(i, s=i>>17, n^i>>13,        10) //2nd 
+    +g(i, s/3,     n+((i>>11)%3),  10) //3rd
+    +g(i, s/5,     8+n-((i>>10)%3), 9) //4th
     );
   }
  }

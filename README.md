@@ -30,4 +30,14 @@ If you haven't used github... well... A) you should, and B) this is a great plac
 - I get the pull request and approve it, which makes your changes the current "head" on this project and future forks. 
 
 This is using Github without installing Git on your local machine. It's quick, pretty easy, and... collaboration is fun and useful and worth learning to do. If you want to really get into it, start here:
+
 https://help.github.com/
+
+or run through the crash course version I wrote here:
+
+http://techref.massmind.org/techref/app/git.htm
+
+or take the free class from udacity
+
+https://www.udacity.com/course/ud775
+

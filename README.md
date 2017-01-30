@@ -1,6 +1,11 @@
 # BitShift-Variations-unrolled
 This is Rob Miles Bitshift Variations code unrolled so we can understand how it works. It's based on his original code, published here:
+
 http://txti.es/bitshiftvariationsincminor
+
+and which I have started to "unroll" or format for human reading here:
+
+https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code
 
 This is amazingly cool code! 
 
@@ -11,9 +16,11 @@ This is amazingly cool code!
 3. Descriptive (it embodies fundamental rules of a completely different area of study). 
 
 What does it do? It makes music. In that amazingly short program are a basic set of rules of good sounding music, including the waveform, notes, chords, and tempos. Looks like gobbly gook. Makes passable music. Amazing. Here is at least 16 minutes of it (the actual program will keep going forever, although it repeats at some, yet unknown, point). It starts slow, but gets going in under a minute.
+
 https://soundcloud.com/robertskmiles/bitshift-variations-in-c-minor
 
 See this video:
+
 https://www.youtube.com/watch?v=MqZgoNRERY8
 
 "Let's all" fork this to continue to "unroll" it and document how it works!

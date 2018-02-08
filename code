@@ -2,7 +2,13 @@ echo "   //makes the text "..." ready to pass it to compiler
 
 g(i,x,t,o){         //function g returns waveheight, given time increment, note chord, volumn???, octave, 
  return((3&x&(i*( (3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);
- };
+ }; 
+// >> has a higher precidence than & which is higher than ? so i is divided by 65536, 
+// then the bottom 2 bits are checked. The first string is used if they are NOT 0
+// the second string if they are zero. The resulting string is indexed by t modulo 8
+// aka the bottom 3 bits of t and the resulting character is first increased by 51
+// then multiplied by i.
+//BY}6YB6% = 66,89,125,54,89,66,54,37 and Qj}6jQ6% = 81,106,125,54,106,81,54,37
 
 main(i,n,s){	//main function (starts running here)
  for(i=0;;i++) {	//for loop and something

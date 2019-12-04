@@ -23,6 +23,8 @@ See this video:
 
 https://www.youtube.com/watch?v=MqZgoNRERY8
 
+For a few notes on how it works (beyond the [source code](https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code)) see the local [wiki](https://github.com/JamesNewton/BitShift-Variations-unrolled/wiki)
+
 "Let's all" fork this to continue to "unroll" it and document how it works!
 
 If you haven't used github... well... A) you should, and B) this is a great place to start. Git can be very very scary and complex, but getting started is easy: If you see some change you could make to the "code" file listed above, then

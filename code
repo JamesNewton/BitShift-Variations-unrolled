@@ -1,14 +1,35 @@
 echo "   //makes the text "..." ready to pass it to compiler
 
-g(i,x,t,o){         //function g returns waveheight, given time increment, note chord, volumn???, octave, 
+g(i,x,t,o){ //function g returns waveheight, given time increment, note chord, volumn???, octave, 
  return((3&x&(i*( (3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);
  }; 
 // >> has a higher precidence than & which is higher than ? so i is divided by 65536, 
 // then the bottom 2 bits are checked. The first string is used if they are NOT 0
 // the second string if they are zero. The resulting string is indexed by t modulo 8
 // aka the bottom 3 bits of t and the resulting character is first increased by 51
-// then multiplied by i.
+// then multiplied by i, shifted right by o, bitwise and by x and 3, time 16.
 //BY}6YB6% = 66,89,125,54,89,66,54,37 and Qj}6jQ6% = 81,106,125,54,106,81,54,37
+/* the following unroll is untested.
+int g(int i, int x, int t, int o) {
+  int b; //all unspecified data types are int 
+         //https://stackoverflow.com/questions/23874660/default-data-type-of-parameter-in-c
+  char c[8];
+  b = i >> 16;//take the upper 2 bytes of 1st param aka i/65536
+  b &= 3; //mask off all but the bottom 2 bits
+  if (b == 0) {
+     c = "BY}6YB6%"; //66,89,125,54,89,66,54,37 
+  } else {
+     c = "Qj}6jQ6%"; //81,106,125,54,106,81,54,37
+     }
+  b = (int)c[t%8]; //reuse b. index c with 3rd param modulo 8
+  b += 51;
+  b *= i; //multiple by 1st param. * is higher precidence than >>
+  b >>= o; //shift right by 4th param 
+  b &= x; //bitwize and with 2nd parm
+  b &= 3; //take only the bottom 2 bits
+  b <<= 4; //multiply by 16. 
+  }
+*/
 
 main(i,n,s){	//main function (starts running here)
  for(i=0;;i++) {	//for loop and something
@@ -21,5 +42,6 @@ main(i,n,s){	//main function (starts running here)
   }
  }
 
-"  |  gcc -xc -&&./a.out      //compiles the program inside "..."
-  |  aplay        //plays programs text output
+"  |  gcc -xc -&&./a.out      //compiles the program inside the echoed text
+  |  aplay        //plays programs text output at 8KHz. 
+  // Each char is the height of the wave form at that instant.

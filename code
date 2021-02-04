@@ -13,7 +13,7 @@ g(i,x,t,o){ //function g returns waveheight, given time increment, note chord, v
 int g(int i, int x, int t, int o) {
   int b; //all unspecified data types are int 
          //https://stackoverflow.com/questions/23874660/default-data-type-of-parameter-in-c
-  char c[8];
+  char *c;
   b = i >> 16;//take the upper 2 bytes of 1st param aka i/65536
   b &= 3; //mask off all but the bottom 2 bits
   if (b == 0) {

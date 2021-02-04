@@ -1,18 +1,21 @@
-echo "   //makes the text "..." ready to pass it to compiler
+//echo "   //makes the text "..." ready to pass it to compiler
 
-g(i,x,t,o){ //function g returns waveheight, given time increment, note chord, volumn???, octave, 
- return((3&x&(i*( (3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);
- }; 
+//g(i,x,t,o){ //function g returns waveheight, given time increment, note chord, volumn???, octave, 
+// return((3&x&(i*( (3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);
+// }; 
 // >> has a higher precidence than & which is higher than ? so i is divided by 65536, 
 // then the bottom 2 bits are checked. The first string is used if they are NOT 0
 // the second string if they are zero. The resulting string is indexed by t modulo 8
 // aka the bottom 3 bits of t and the resulting character is first increased by 51
 // then multiplied by i, shifted right by o, bitwise and by x and 3, time 16.
 //BY}6YB6% = 66,89,125,54,89,66,54,37 and Qj}6jQ6% = 81,106,125,54,106,81,54,37
-/* the following unroll is untested.
+//here is g unrolled.
+
+#include <stdio.h>
+
 int g(int i, int x, int t, int o) {
   int b; //all unspecified data types are int 
-         //https://stackoverflow.com/questions/23874660/default-data-type-of-parameter-in-c
+         //https://stackoverflow.com/questions/23874660/default-data-type-of-pa$
   char *c;
   b = i >> 16;//take the upper 2 bytes of 1st param aka i/65536
   b &= 3; //mask off all but the bottom 2 bits
@@ -29,19 +32,19 @@ int g(int i, int x, int t, int o) {
   b &= 3; //take only the bottom 2 bits
   b <<= 4; //multiply by 16. 
   }
-*/
 
-main(i,n,s){	//main function (starts running here)
- for(i=0;;i++) {	//for loop and something
-   putchar(	//call g 4 times and sums them up
+
+int main(int i, int n, int s) { //main function (starts running here)
+ for(i=0;;i++) {        //for loop and something
+   putchar(     //call g 4 times and sums them up
      g(i, 1,       n=i>>14,        12) //first note        
     +g(i, s=i>>17, n^i>>13,        10) //2nd 
     +g(i, s/3,     n+((i>>11)%3),  10) //3rd
     +g(i, s/5,     8+n-((i>>10)%3), 9) //4th
     );
   }
- }
+return 0;
 
-"  |  gcc -xc -&&./a.out      //compiles the program inside the echoed text
-  |  aplay        //plays programs text output at 8KHz. 
-  // Each char is the height of the wave form at that instant.
+//"  |  gcc -xc -&&./a.out      //compiles the program inside the echoed text
+//  |  aplay        //plays programs text output at 8KHz. 
+// Each char is the height of the wave form at that instant.

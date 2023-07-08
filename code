@@ -9,6 +9,29 @@
 // aka the bottom 3 bits of t and the resulting character is first increased by 51
 // then multiplied by i, shifted right by o, bitwise and by x and 3, time 16.
 //BY}6YB6% = 66,89,125,54,89,66,54,37 and Qj}6jQ6% = 81,106,125,54,106,81,54,37
+
+// Encoding of notes:
+//                                \/- original note hz
+//                                        \/- actual resulting hz
+//                                                \/- +51 values * (176/196) scaling ratio
+//                                                         \/- theoretical error in hz
+//                                                                  \/- error in percentage
+//char    note      ascii   +51	orighz	realhz	equivhz  errhz    err%
+//        F# / Gb   32      83	92.50	81.05	92.43	-0.0681   -0.0737%
+//%       G         37      88	98.00	85.93	98.00	 0.0000    0.0000%
+//*       G# / Ab   42      93	103.83	90.82	103.56	-0.2618   -0.2521%
+//0       A         48      99	110.00	96.67	110.24	 0.2499    0.2272%
+//6       A# / Bb   54      105	116.54	102.53	116.93 	 0.3918    0.3362%
+//<       B         60      111	123.47	108.39	123.61	 0.1436    0.1163%
+//B       C         66      117	130.81	114.25	130.29	-0.5145   -0.3933%
+//I       C# / Db   73      124	138.59	121.09	138.09	-0.4990   -0.3601%
+//Q       D         81      132	146.83	128.90	147.00	 0.1699    0.1157%
+//Y       D# / Eb   89      140	155.56	136.71	155.90	 0.3490    0.2244%
+//a       E         97      148	164.81	144.53	164.81	 0.0081    0.0049%
+//j       F         106     157	174.61	153.32	174.84	 0.2309    0.1322%
+//s       F# / Gb   115     166	185.00	162.10	184.86	-0.1363   -0.0737%
+//}       G         125     176	196.00	171.87	196.00	 0.0000    0.0000%
+
 //here is g unrolled.
 
 #include <stdio.h>

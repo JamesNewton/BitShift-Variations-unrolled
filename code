@@ -34,16 +34,31 @@ int g(int i, int x, int t, int o) {
   }
 
 
-int main(int i, int n, int s) { //main function (starts running here)
- for(i=0;;i++) {        //for loop and something
-   putchar(     //call g 4 times and sums them up
-     g(i, 1,       n=i>>14,        12) //first note        
-    +g(i, s=i>>17, n^i>>13,        10) //2nd 
-    +g(i, s/3,     n+((i>>11)%3),  10) //3rd
-    +g(i, s/5,     8+n-((i>>10)%3), 9) //4th
-    );
-  }
-  return 0;
+main(i, n, s){ //the following notes direct from the author
+	for(i=0;;i++) {
+		putchar( //call g 4 times and sum up the results
+			// The bass
+			g(i, 1,    // Volume never changes
+			  n=i>>13, // Note changes every 2 seconds, walks through the chord string
+		  	  12       // octave is very low
+			 ) +
+			// Melody(ish).
+			g(i, s=i>>17, // volume changes slowly, i>>17
+			  n^i>>12,    // note changes twice as often as the bass. Exponentiation, so it's picking notes from the chord kind of randomly
+		 	  11          // One octave up from the bass
+			 ) +
+			// arpeggios
+			g(i, s/3,        // volume changes 3 times slower(?) than melody's does
+			  n+((i>>11)%3), // start at the current bass note n (but 2 octaves up), and quickly (i>>11) walk through the chord string in triplets (%3)
+			  10             // an octave above the melody
+			 ) +
+			// higher, slower arpeggios
+			g(i, s/5,          // volume changes 5 times slower(?) than melody. 3 and 5 are prime for longer time before repeats
+			  8+n-((i>>10)%3), // like previous arpeggios but half the speed, and walking backwards through the notes not forwards
+			  9                // and another octave up
+		       )
+		);
+	}
 }
 //"  |  gcc -xc -&&./a.out      //compiles the program inside the echoed text
 //  |  aplay        //plays programs text output at 8KHz. 

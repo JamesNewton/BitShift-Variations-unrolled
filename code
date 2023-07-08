@@ -40,20 +40,18 @@ int g(int i, int x, int t, int o) {
   int b; //all unspecified data types are int 
          //https://stackoverflow.com/questions/23874660/default-data-type-of-pa$
   char *c;
-  b = i >> 16;//take the upper 2 bytes of 1st param aka i/65536
-  b &= 3; //mask off all but the bottom 2 bits
-  if (b != 0) {
-     c = "BY}6YB6%"; //66,89,125,54,89,66,54,37 
+  b = 3 & i >> 16;//take the upper 2 bytes of 1st param. Select chord: 3 rounds in 1, 1 in next, thus bitwise & 3
+  if (b != 0) { //select between the two chord strings
+     c = "BY}6YB6%"; //66,89,125,54,89,66,54,37 First chord string, C minor 7th: C Eb G Bb Eb C Bb G,
   } else {
-     c = "Qj}6jQ6%"; //81,106,125,54,106,81,54,37
+     c = "Qj}6jQ6%"; //81,106,125,54,106,81,54,37 Second chord string, Gm7: D F G Bb F D Bb G,
      }
   b = (int)c[t%8]; //reuse b. index c with 3rd param modulo 8
-  b += 51;
-  b *= i; //multiple by 1st param. * is higher precidence than >>
-  b >>= o; //shift right by 4th param 
-  b &= x; //bitwize and with 2nd parm
-  b &= 3; //take only the bottom 2 bits
-  b <<= 4; //multiply by 16. 
+  b += 51; //+51 puts variation in printable range
+  b *= i; //multiple by 1st param. * is higher precidence than >>. The actual wave generator
+  b >>= o; //shift right by 4th param, into an octave. Will be 12,10, or 9
+  b &= 3 & x; //bitwize and with 2nd parm, bottom 2 bits. Selects one of 4 volumns
+  b <<= 4; //multiply by 16. Amplify signal; master volumn control
   }
 
 

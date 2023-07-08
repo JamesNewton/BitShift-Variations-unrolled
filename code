@@ -68,12 +68,12 @@ main(i, n, s){ //the following notes direct from the author
 			// Melody(ish).
 			g(i, s=i>>17, // volume changes slowly, i>>17
 			  n^i>>12,    // note changes twice as often as the bass. Exponentiation, so it's picking notes from the chord kind of randomly
-		 	  11          // One octave up from the bass
+		 	  10          // One octave up from the bass // 10 in published version, two octaves above the bass; sounds better.
 			 ) +
 			// arpeggios
 			g(i, s/3,        // volume changes 3 times slower(?) than melody's does
 			  n+((i>>11)%3), // start at the current bass note n (but 2 octaves up), and quickly (i>>11) walk through the chord string in triplets (%3)
-			  10             // an octave above the melody
+			  10             // two octaves above the bass
 			 ) +
 			// higher, slower arpeggios
 			g(i, s/5,          // volume changes 5 times slower(?) than melody. 3 and 5 are prime for longer time before repeats

@@ -5,7 +5,7 @@ http://txti.es/bitshiftvariationsincminor
 
 and which I have started to "unroll" or format for human reading here:
 
-https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code
+https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code.c
 
 Unfortunately, the link to the original code shows a message indicating the site will be shut down as of July 1, 2023. As the site is still up as of today, September 18 2023, your mileage may vary. In case the code becomes unavailable, it has been reproduced at the bottom of this file.
 
@@ -25,7 +25,7 @@ See this video:
 
 https://www.youtube.com/watch?v=MqZgoNRERY8
 
-For a few notes on how it works (beyond the [source code](https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code)) see the local [wiki](https://github.com/JamesNewton/BitShift-Variations-unrolled/wiki)
+For a few notes on how it works (beyond the [source code](https://github.com/JamesNewton/BitShift-Variations-unrolled/blob/master/code.c)) see the local [wiki](https://github.com/JamesNewton/BitShift-Variations-unrolled/wiki)
 
 "Let's all" fork this to continue to "unroll" it and document how it works!
 

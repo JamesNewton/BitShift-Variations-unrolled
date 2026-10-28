@@ -61,7 +61,9 @@ As a result, the original code is reproduced below. Its creator is, as written a
 
 ### The Code
 
+```bash
 echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);};main(i,n,s){for(i=0;;i++)putchar(g(i,1,n=i>>14,12)+g(i,s=i>>17,n^i>>13,10)+g(i,s/3,n+((i>>11)%3),10)+g(i,s/5,8+n-((i>>10)%3),9));}"|gcc -xc -&&./a.out|aplay
+```
 
 ### Explanation
 As written, the above code was intended to be run as a shell script, for example a .sh file that can be run in a command prompt. The actual program, the quoted string following "echo", is very well explained, but here's a brief explanation of how the script works.
@@ -70,9 +72,11 @@ As written, the above code was intended to be run as a shell script, for example
 
 Lets start by breaking the one-liner into three lines.
 
+```bash
 echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);};main(i,n,s){for(i=0;;i++)putchar(g(i,1,n=i>>14,12)+g(i,s=i>>17,n^i>>13,10)+g(i,s/3,n+((i>>11)%3),10)+g(i,s/5,8+n-((i>>10)%3),9));}" |
 	gcc -xc -&&./a.out |
 	aplay
+```
 
 First, the "echo" command is used. It takes everything in the quotation marks, ("") and repeats it.
 Ordinarily, the echo command would repeat it to the screen. Using the echo command is one way a script can communicate with its user. In this case though, it's followed with a | character.
@@ -98,24 +102,26 @@ The sox web site is at [https://sourceforge.net/projects/sox/](https://sourcefor
 
 Below, I'll show how to use it in this context, using the "play" command. If your installation of SOX doesn't include the "play" program, just copy the "sox" command, name the new file "play" with the same extension as sox, if any.
 
-#### Playing
+#### Playing with play
 
 To play, we need only modify the command after the last | character.
 Delete the "aplay" command, and use this instead.
 "play -b 8 -c 1 -r 8000 -t raw -e unsigned-integer -"
 Remember the - at the end, it tells SOX to read from the pipe. Putting it all together then, the new code would be:
 
+```bash
 echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);};main(i,n,s){for(i=0;;i++)putchar(g(i,1,n=i>>14,12)+g(i,s=i>>17,n^i>>13,10)+g(i,s/3,n+((i>>11)%3),10)+g(i,s/5,8+n-((i>>10)%3),9));}"|gcc -xc -&&./a.out|play -b 8 -c 1 -r 8000 -t raw -e unsigned-integer -
+```
 
 #### The Parameters
 
 The play command is given several parameters, here is an explanation of what they do.
 
--b 8 - tells sox this is 8bit data.
--c 1 - tells sox this is  a single channel sound, mono not stereo.
--r 8000 - tells sox the sound should be played at 8000 samples per second. 44100 is CD audio quality, this is quite a bit lower.
--t raw - indicates this is raw data, not a .wav file for example.
--e unsigned-integer - tells sox the data is unsigned, and that its integer data. Another example might be -e float, which would expect floating point values.
-- - The - tells sox to play from the pipe, or if there isn't one, to play from the keyboard. It's pretty hard to type 8000 characters a second, so this command is usually used to read from another program via a pipe.
+`-b 8` - tells sox this is 8bit data.
+`-c 1` - tells sox this is  a single channel sound, mono not stereo.
+`-r 8000` - tells sox the sound should be played at 8000 samples per second. 44100 is CD audio quality, this is quite a bit lower.
+`-t raw` - indicates this is raw data, not a .wav file for example.
+`-e unsigned-integer` - tells sox the data is unsigned, and that its integer data. Another example might be -e float, which would expect floating point values.
+`-` The - tells sox to play from the pipe, or if there isn't one, to play from the keyboard. It's pretty hard to type 8000 characters a second, so this command is usually used to read from another program via a pipe.
 
 I hope this info proves to be helpful to you.

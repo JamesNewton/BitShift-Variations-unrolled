@@ -52,21 +52,21 @@ or take the free class from Audacity
 
 https://www.udacity.com/course/ud775
 
-###Original code
-####Shutdown Message
+## Original code
+### Shutdown Message
 As of September 18, 2023, the following message appears above the original code at the link above.
 "ATTENTION!! Due to bad actors, txti will be shutting down permanently on July 1st, 2023. Please make arrangements to move your content elsewhere."
 
 As a result, the original code is reproduced below. Its creator is, as written above, Rob Miles. The code is reproduced so it won't become lost, and because it's awesome! No copyright violation is intended.
 
-####The Code
+### The Code
 
 echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);};main(i,n,s){for(i=0;;i++)putchar(g(i,1,n=i>>14,12)+g(i,s=i>>17,n^i>>13,10)+g(i,s/3,n+((i>>11)%3),10)+g(i,s/5,8+n-((i>>10)%3),9));}"|gcc -xc -&&./a.out|aplay
 
-####Explanation
+### Explanation
 As written, the above code was intended to be run as a shell script, for example a .sh file that can be run in a command prompt. The actual program, the quoted string following "echo", is very well explained, but here's a brief explanation of how the script works.
 
-#####The Script, Unrolled
+#### The Script, Unrolled
 
 Lets start by breaking the one-liner into three lines.
 
@@ -82,7 +82,7 @@ The second line tells the c compiler, gcc, to read from the previous command, ak
 The line ends with a | character. The parameters sent to gcc tell it to run the program it compiled, the program it got from "echo" above. This means the program, the music creator, will now run. It will produce the bytes for the song. The | at the end of that line tells the compiled program to send its output down the pipe to the "aplay" command.
 The aplay command, which can be found on linux when alsa sound drivers are installed, takes whatever it reads from the pipe and sends it to the audio device. By default, aplay assumes it will receive 8 bit unsigned samples, and that there are 8000 samples per second.
 
-####Aplay Alternatives
+### Aplay Alternatives
 
 If you don't have alsa drivers installed, true for Windows and Mac OS, as well as in some Linux distributions, there is an alternative program, it's called SOX. SOX is short for Sound Exchange. A big part of its use is to convert and/or play sound files. Here are a couple ways you can install it.
 If you use windows, you can download it and follow the installation instructions. if you have Chocolatey installed, this command will work:
@@ -98,7 +98,7 @@ The sox web site is at [https://sourceforge.net/projects/sox/](https://sourcefor
 
 Below, I'll show how to use it in this context, using the "play" command. If your installation of SOX doesn't include the "play" program, just copy the "sox" command, name the new file "play" with the same extension as sox, if any.
 
-#####Playing
+#### Playing
 
 To play, we need only modify the command after the last | character.
 Delete the "aplay" command, and use this instead.
@@ -107,7 +107,7 @@ Remember the - at the end, it tells SOX to read from the pipe. Putting it all to
 
 echo "g(i,x,t,o){return((3&x&(i*((3&i>>16?\"BY}6YB6%\":\"Qj}6jQ6%\")[t%8]+51)>>o))<<4);};main(i,n,s){for(i=0;;i++)putchar(g(i,1,n=i>>14,12)+g(i,s=i>>17,n^i>>13,10)+g(i,s/3,n+((i>>11)%3),10)+g(i,s/5,8+n-((i>>10)%3),9));}"|gcc -xc -&&./a.out|play -b 8 -c 1 -r 8000 -t raw -e unsigned-integer -
 
-#####The Parameters
+#### The Parameters
 
 The play command is given several parameters, here is an explanation of what they do.
 
